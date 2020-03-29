@@ -7,6 +7,7 @@ export class RedisDbPublisher extends Publisher {
     constructor(publisher: InputPublisherModel) {
         super(publisher);
         this.options = publisher.options || {};
+        this.command = publisher.command || 'get';
     }
 
     public publish(): Promise<any> {
@@ -28,7 +29,7 @@ export class RedisDbPublisher extends Publisher {
                 }
             };
 
-            switch (this.command) {
+            switch (this.command.toLowerCase()) {
                 case 'get':
                     client.get(this.key, callback);
                     break;
@@ -36,7 +37,7 @@ export class RedisDbPublisher extends Publisher {
                     client.keys(this.pattern, callback);
                     break;
                 default:
-                    client[this.command](this.key, this.value, callback);
+                    client[this.command.toLowerCase()](this.key, this.value, callback);
                     break;
             }
         });
