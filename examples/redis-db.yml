@@ -1,0 +1,29 @@
+- publishers:
+    - type: redis-db
+      command: set
+      key: keyName
+      onInit:
+        script: this.value = new Date().getTime()
+      onCommandExecuted:
+        assertions:
+          - expect: result
+            toBeEqualTo: `OK`
+- publishers:
+    - type: redis-db
+      command: get
+      key: keyName
+      value: virgs
+      onCommandExecuted:
+        assertions:
+          - expect: new Date().getTime() - result
+            toBeLessThan: 100
+- publishers:
+    - type: redis-db
+      options:
+      command: keys
+      pattern: key*
+      value: virgs
+      onCommandExecuted:
+        assertions:
+          - expect: result
+            toContain: `keyName`

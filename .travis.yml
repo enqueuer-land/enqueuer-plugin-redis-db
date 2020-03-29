@@ -1,0 +1,23 @@
+language: node_js
+
+node_js:
+  - v10.8.0
+
+cache:
+  directories:
+    - node_modules
+
+notifications:
+  email:
+    on_success: never
+    on_failure: always
+
+services:
+  - redis-server
+
+script:
+  - npm install
+  - npm run lint
+  - npm run build
+  - npm link
+  - nqr examples/redis-db.yml -l `pwd`

@@ -1,0 +1,43 @@
+{
+  "name": "enqueuer-redis-db",
+  "version": "1.0.4",
+  "description": "Enqueuer redis key-value commands",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "clean": "rm -rf dist",
+    "all": "npm run clean && npm run lint && npm run build",
+    "lint": "node_modules/.bin/tslint --project tsconfig.json",
+    "prepublishOnly": "npm run all",
+    "build": "tsc"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/enqueuer-land/enqueuer-redis-db.git"
+  },
+  "keywords": [
+    "enqueuer",
+    "nqr",
+    "redis",
+    "key",
+    "value",
+    "plugin"
+  ],
+  "author": "Virgs",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/enqueuer-land/enqueuer-redis-db/issues"
+  },
+  "homepage": "https://github.com/enqueuer-land/enqueuer-redis-db#readme",
+  "devDependencies": {
+    "@types/node": "^13.9.5",
+    "@types/redis": "^2.8.17",
+    "ts-node": "^8.8.1",
+    "tslint": "^5.20.1",
+    "typescript": "^3.8.3"
+  },
+  "dependencies": {
+    "enqueuer": "^5.1.4",
+    "redis": "^3.0.2"
+  }
+}
